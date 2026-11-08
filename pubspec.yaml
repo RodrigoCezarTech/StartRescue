@@ -1,0 +1,49 @@
+name: start_rescue
+description: "StartRescue MVP em Flutter (pt/en), triagem START, export PDF/CSV"
+publish_to: "none"
+version: 0.1.0+1
+
+environment:
+  sdk: ^3.9.0
+
+dependencies:
+  flutter:
+    sdk: flutter
+  flutter_localizations:
+    sdk: flutter
+  intl: ^0.20.2
+  hooks_riverpod: ^2.5.1
+  shared_preferences: ^2.2.3
+
+  # Export/compartilhamento
+  path_provider: ^2.1.4
+  share_plus: ^10.1.4
+  csv: ^6.0.0
+  pdf: ^3.11.0
+  printing: ^5.13.4
+
+  # UI
+  google_fonts: ^6.2.1
+  cupertino_icons: ^1.0.8
+
+  # About + abrir links
+  package_info_plus: ^8.0.2
+  url_launcher: ^6.3.0
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_launcher_icons: "^0.14.4"
+
+flutter:
+  uses-material-design: true
+  assets:
+    - assets/images/flowchart.png
+    - assets/images/icon.png
+    - assets/fonts/NotoSans-Regular.ttf
+
+flutter_launcher_icons:
+  android: true
+  ios: true
+  image_path: "assets/images/icon.png"
+  min_sdk_android: 21
