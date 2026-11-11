@@ -87,6 +87,10 @@ class TriageController {
   }
 
   bool next() {
+    if (index >= cases.length) {
+      return false;
+    }
+
     final rule = engine.decide(
       cases[index],
       tourniquet: true,
