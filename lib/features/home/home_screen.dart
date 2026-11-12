@@ -23,6 +23,44 @@ class _HomeScreenState extends State<HomeScreen> {
   final _idCtrl     = TextEditingController(text: '0001');
 
   @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    _updateDefaultTexts(Localizations.localeOf(context));
+  }
+  String _lastLanguage = 'pt';
+
+  void _updateDefaultTexts(Locale locale) {
+    final newLanguage = locale.languageCode;
+
+    if (newLanguage == _lastLanguage) return;
+
+    const defaultNames = {
+      'pt': 'Aluno(a)',
+      'en': 'Student',
+      'es': 'Alumno(a)',
+    };
+
+    const defaultSectors = {
+      'pt': 'Turma A',
+      'en': 'Class A',
+      'es': 'Clase A',
+    };
+
+    final oldName = defaultNames[_lastLanguage];
+    final oldSector = defaultSectors[_lastLanguage];
+
+    if (_nameCtrl.text == oldName) {
+      _nameCtrl.text = defaultNames[newLanguage] ?? 'Student';
+    }
+
+    if (_sectorCtrl.text == oldSector) {
+      _sectorCtrl.text = defaultSectors[newLanguage] ?? 'Class A';
+    }
+
+    _lastLanguage = newLanguage;
+  }
+
+  @override
   void dispose() {
     _nameCtrl.dispose();
     _sectorCtrl.dispose();
@@ -137,6 +175,7 @@ class _HomeScreenState extends State<HomeScreen> {
             tooltip: i18n.language,
             icon: const Icon(Icons.language),
             onSelected: (loc) {
+              _updateDefaultTexts(loc);
               widget.onChangeLocale?.call(loc);
               setState(() {});
             },
